@@ -16,25 +16,39 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println();
-        System.out.println("Введите количество чисел в последовательности: ");
 
-        int num = scan.nextInt();
-        System.out.println("Сумма: " + sum(num, scan));
+        System.out.println("Сумма: " + sum(scan));
     }
 
-    public static int sum(int num, Scanner scan) {
+    /**
+     * 
+     * @param num  -> количество целых чисел в последовательности. Вводится с
+     *             клавиатуры.
+     * @param scan
+     * @return int sum -> сумма положительных чисел, после которых следует
+     *         отрицательное
+     *         число
+     */
+    public static int sum(Scanner scan) {
         int sum = 0;
-        System.out.println("Введите 1-e целое число: ");
+        System.out.println();
+        System.out.print("Введите целое число: ");
         int n1 = scan.nextInt();
-        for (int i = 1; i < num; i++) {
-            System.out.printf("Введите %s-e целое число: \n", i + 1);
-            int n2 = scan.nextInt();
-            if (n1 > 0 && n2 < 0) {
-                sum += n1;
+        if (n1 != 0) {
+            int n2 = 1;
+            while (n2 != 0) {
+                System.out.print("Введите следующее целое число: ");
+                n2 = scan.nextInt();
+                if (n2 != 0) {
+                    if (n1 > 0 && n2 < 0) {
+                        sum += n1;
+                    }
+                    n1 = n2;
+                }
             }
-            n1 = n2;
         }
+        System.out.println();
         return sum;
     }
+
 }
