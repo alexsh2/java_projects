@@ -39,12 +39,10 @@ public class Main {
             while (n2 != 0) {
                 System.out.print("Введите следующее целое число: ");
                 n2 = scan.nextInt();
-                if (n2 != 0) {
-                    if (n1 > 0 && n2 < 0) {
-                        sum += n1;
-                    }
-                    n1 = n2;
+                if (n1 > 0 && n2 < 0) {
+                    sum += n1;
                 }
+                n1 = n2;
             }
         }
         System.out.println();
