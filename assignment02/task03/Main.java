@@ -33,7 +33,7 @@ public class Main {
             if (nums[i] < 0) {
                 temp.add(i);
             }
-            if (nums[i] > 9 && nums[i] < 100) {
+            if ((nums[i] > 9 && nums[i] < 100) || (nums[i] > -100 && nums[i] < -9)) {
                 sum += i;
             }
         }
