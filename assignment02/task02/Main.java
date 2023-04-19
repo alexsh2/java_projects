@@ -7,7 +7,7 @@ package assignment02.task02;
 
 public class Main {
     public static void main(String[] args) {
-        String input = ("-45 -37 -40 -3 1 2 5 45 67");
+        String input = ("-45 -37 -3 1 2 5 45 67");
         String[] nums = input.split(" ");
         boolean ans = isIncreasingSequence(nums);
         if (ans) {
@@ -26,7 +26,7 @@ public class Main {
                 temp = n;
             } else {
                 ans = false;
-                break;
+                return ans;
             }
         }
         return ans;
