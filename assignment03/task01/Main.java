@@ -10,6 +10,27 @@ public class Main {
      * название которых содержит «высший».
      */
     public static void main(String[] args) {
+
+        List<Product> pList = SetProdList();
+        System.out.println();
+        System.out.println(pList);
+        System.out.println();
+
+        List<Integer> maxPriceList = GetMaxPrice(pList, "высший");
+        System.out
+                .println("Максимальная цена товара 1-го сорта, содержащего слово \"высший\" в названии: "
+                        + maxPriceList.get(0));
+        System.out
+                .println("Максимальная цена товара 2-го сорта, содержащего слово \"высший\" в названии: "
+                        + maxPriceList.get(1));
+    }
+
+    /**
+     * Метод создаёт List<Product>
+     * 
+     * @return List<Product>
+     */
+    public static List<Product> SetProdList() {
         Product pr1 = new Product("Пирожок", 100, 2);
         Product pr2 = new Product("Пирожок - высший класс", 250, 2);
         Product pr3 = new Product("Пирожок как у бабушки", 150, 1);
@@ -19,31 +40,41 @@ public class Main {
         Product pr7 = new Product("Пирожок - высший вкус", 153, 1);
         Product pr8 = new Product("Пирог - высший кайф", 150, 2);
 
-        List<Product> productList = new ArrayList<>();
-        productList.add(0, pr1);
-        productList.add(0, pr2);
-        productList.add(0, pr3);
-        productList.add(0, pr4);
-        productList.add(0, pr5);
-        productList.add(0, pr6);
-        productList.add(0, pr7);
-        productList.add(0, pr8);
-        System.out.println();
-        System.out.println(productList);
-        System.out.println();
+        List<Product> pl = new ArrayList<>();
+        pl.add(0, pr1);
+        pl.add(1, pr2);
+        pl.add(2, pr3);
+        pl.add(3, pr4);
+        pl.add(4, pr5);
+        pl.add(5, pr6);
+        pl.add(6, pr7);
+        pl.add(7, pr8);
+
+        return pl;
+    }
+
+    /**
+     * Метод возвращает коллекцию максимальных цен товаров 1го или 2го сорта среди
+     * товаров, название которых содержит searchString.
+     * 
+     * @param pl
+     * @param searchString
+     * @return
+     */
+    public static List<Integer> GetMaxPrice(List<Product> pl, String searchString) {
+        List<Integer> mpl = new ArrayList<>();
         Integer maxPrice1 = 0, maxPrice2 = 0;
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).prodName.contains("высший")) {
-                if (productList.get(i).qualityRate.equals(1) && productList.get(i).prodPrice > maxPrice1) {
-                    maxPrice1 = productList.get(i).prodPrice;
-                } else if (productList.get(i).qualityRate.equals(2) && productList.get(i).prodPrice > maxPrice2) {
-                    maxPrice2 = productList.get(i).prodPrice;
+        for (int i = 0; i < pl.size(); i++) {
+            if (pl.get(i).prodName.contains("высший")) {
+                if (pl.get(i).qualityRate.equals(1) && pl.get(i).prodPrice > maxPrice1) {
+                    maxPrice1 = pl.get(i).prodPrice;
+                } else if (pl.get(i).qualityRate.equals(2) && pl.get(i).prodPrice > maxPrice2) {
+                    maxPrice2 = pl.get(i).prodPrice;
                 }
             }
         }
-        System.out
-                .println("Максимальная цена товара 1-го сорта, содержащего слово \"высший\" в названии: " + maxPrice1);
-        System.out
-                .println("Максимальная цена товара 2-го сорта, содержащего слово \"высший\" в названии: " + maxPrice2);
+        mpl.add(0, maxPrice1);
+        mpl.add(1, maxPrice2);
+        return mpl;
     }
 }
