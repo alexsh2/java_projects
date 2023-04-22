@@ -39,7 +39,7 @@ public class Main {
         Product pr5 = new Product("Product03", "CountryZ", 171, 2, 12.9);
         Product pr6 = new Product("Product15", "CountryA", 172, 2, 22.3);
         Product pr7 = new Product("Product04", "CountryQ", 421, 1, 18.0);
-        Product pr8 = new Product("Product07", "CountryA", 350, 1, 16.5);
+        Product pr8 = new Product("Product07", "CountryA", 349, 1, 16.5);
         Product pr9 = new Product("Product08", "CountryA", 78, 3, 33.0);
         Product pr10 = new Product("Product16", "CountryZ", 82, 3, 21.9);
         Product pr11 = new Product("Product08", "CountryQ", 233, 2, 37.0);
