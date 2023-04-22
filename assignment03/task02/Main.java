@@ -31,6 +31,11 @@ public class Main {
         sc.close();
     }
 
+    /**
+     * Метод создаёт коллекцию типа Product
+     * 
+     * @return
+     */
     public static List<Product> SetProdList() {
         Product pr1 = new Product("Product9", "CountryA", 300, 2, 20.0);
         Product pr2 = new Product("Product03", "CountryZ", 105, 3, 15.5);
@@ -64,6 +69,14 @@ public class Main {
         return pl;
     }
 
+    /**
+     * Метод возвращает список товаров заданного сорта с наименьшей
+     * ценой.
+     * 
+     * @param pl           -> List<Product>
+     * @param searchString -> сорт товара
+     * @return List<String>
+     */
     public static List<String> GetProductsWithMinPriceList(List<Product> pl, String searchString) {
         List<String> mpl = new ArrayList<>();
         Integer minPrice = -1;
