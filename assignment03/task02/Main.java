@@ -21,9 +21,9 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         String searchString = sc.nextLine();
 
-        List<String> minPriceList = GetMinPriceList(pList, searchString);
-        if (minPriceList.size() != 0) {
-            System.out.println(minPriceList);
+        List<String> prodList = GetProductsWithMinPriceList(pList, searchString);
+        if (prodList.size() != 0) {
+            System.out.println(prodList);
         } else {
             System.out.println("Введённый сорт продукта не найден.");
         }
@@ -64,7 +64,7 @@ public class Main {
         return pl;
     }
 
-    public static List<String> GetMinPriceList(List<Product> pl, String searchString) {
+    public static List<String> GetProductsWithMinPriceList(List<Product> pl, String searchString) {
         List<String> mpl = new ArrayList<>();
         Integer minPrice = -1;
         for (int i = 0; i < pl.size(); i++) {
