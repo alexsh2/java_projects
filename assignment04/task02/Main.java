@@ -1,6 +1,8 @@
 package assignment04.task02;
 
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -26,7 +28,7 @@ public class Main {
      * Output: false
      */
     public static void main(String[] args) {
-        String str = "(abc]d}f";
+        String str = "(ab{[c]d}f)";
         Integer result = validateStringForBrackets(str);
         if (result == 0 || result > 1) {
             System.out.println("Input string is valid.");
@@ -36,27 +38,51 @@ public class Main {
 
     }
 
+    /**
+     * Метод:
+     * - создаёт коллекцию скобок
+     * - вызывает метод checkClosedBrackets(String str, String s)
+     * - возвращает Integer как результат проверки:
+     * ....0 или >1 - строка валидна
+     * ....1 - строка невалидна
+     * 
+     * @param str -> проверяемая строка
+     * @return
+     */
     public static Integer validateStringForBrackets(String str) {
-        Integer res1 = checkClosedBraces(str, "{");
-        if (res1 == 1) {
-            System.out.println("Check curly brackets '{}'");
+        Integer res = 0;
+        Integer flag = 0;
+        // List<String> brackets = Arrays.asList("{", "[", "(");
+        List<String> brackets = Collections.unmodifiableList(
+                new ArrayList<String>() {
+                    {
+                        add("{");
+                        add("[");
+                        add("(");
+                    }
+                });
+        for (String bracket : brackets) {
+            res = checkClosedBrackets(str, bracket);
+            if (res == 1) {
+                System.out.println("Check brackets '" + bracket + "'");
+                flag = -1;
+            }
         }
-        Integer res2 = checkClosedBrackets(str, "]");
-        if (res2 == 1) {
-            System.out.println("Check square brackets '[]'");
+        if (flag == -1) {
+            res = 1;
         }
-        Integer res3 = checkClosedParentheses(str, "(");
-        if (res3 == 1) {
-            System.out.println("Check round brackets '()'");
-        }
-
-        if (res1 == 1 || res2 == 1 || res3 == 1) {
-            res1 = 1;
-        }
-        return res1;
+        return res;
     }
 
-    public static Integer checkClosedBraces(String str, String s) {
+    /**
+     * Метод проверяет строку на наличие закрытых скобок "{}, [], ()".
+     * В случае отрицательного результата возвращает '1'.
+     * 
+     * @param str -> проверяемая строка
+     * @param s   -> проверяемая скобка
+     * @return
+     */
+    public static Integer checkClosedBrackets(String str, String s) {
 
         String s1 = "";
         Integer count1 = 0;
@@ -67,75 +93,14 @@ public class Main {
             s1 = "}";
         } else if (s.equals("}")) {
             s1 = "{";
-        } else {
-            count2 = -1;
-            return count2;
-        }
-
-        while ((index = str.indexOf(s, index)) != -1) {
-            count1++;
-            index++;
-        }
-        index = 0;
-        while ((index = str.indexOf(s1, index)) != -1) {
-            count2++;
-            index++;
-        }
-
-        if (count1 == count2) {
-            count1 += count2;
-        } else {
-            count1 = 1;
-        }
-        return count1;
-    }
-
-    public static Integer checkClosedBrackets(String str, String s) {
-
-        String s1 = "";
-        Integer count1 = 0;
-        Integer count2 = 0;
-        Integer index = 0;
-
-        if (s.equals("[")) {
+        } else if (s.equals("[")) {
             s1 = "]";
         } else if (s.equals("]")) {
             s1 = "[";
-        } else {
-            count1 = -1;
-        }
-
-        while ((index = str.indexOf(s, index)) != -1) {
-            count1++;
-            index++;
-        }
-        index = 0;
-        while ((index = str.indexOf(s1, index)) != -1) {
-            count2++;
-            index++;
-        }
-
-        if (count1 == count2) {
-            count1 += count2;
-        } else {
-            count1 = 1;
-        }
-        return count1;
-    }
-
-    public static Integer checkClosedParentheses(String str, String s) {
-
-        String s1 = "";
-        Integer count1 = 0;
-        Integer count2 = 0;
-        Integer index = 0;
-
-        if (s.equals("(")) {
+        } else if (s.equals("(")) {
             s1 = ")";
         } else if (s.equals(")")) {
             s1 = "(";
-        } else {
-            count1 = -1;
         }
 
         while ((index = str.indexOf(s, index)) != -1) {
@@ -155,5 +120,4 @@ public class Main {
         }
         return count1;
     }
-
 }
